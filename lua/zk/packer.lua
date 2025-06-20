@@ -25,7 +25,23 @@ return require('packer').startup(function(use)
 	use { 'nvim-treesitter/playground', }
 	use { 'mbbill/undotree', }
 	use { 'tpope/vim-fugitive', }
-	use { 'mason-org/mason.nvim', }
+	use {
+		'mason-org/mason.nvim',
+		config = function()
+			require("mason").setup()
+		end,
+	}
+
+	use {
+	  "williamboman/mason-lspconfig.nvim",
+	  requires = { "neovim/nvim-lspconfig" },
+	  config = function()
+	    require("mason-lspconfig").setup({
+	      automatic_installation = true,
+	    })
+	  end,
+	}
+
 	use {  'neovim/nvim-lspconfig', }
 	use {  'hrsh7th/nvim-cmp', }
 	use {  'hrsh7th/cmp-nvim-lsp', }
